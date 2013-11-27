@@ -1,4 +1,4 @@
-//Append to HTML
+//Append to HTML//////////////////////////////////////////////////////
 var grid;
 
 var gameboard = createTheBoard(6, 7);
@@ -15,7 +15,7 @@ var gameboard = createTheBoard(6, 7);
 
 checkWinner("blue");
 
-// Random Color Function
+// Random Color Function///////////////////////////////////////////////
 
 function randomColor () {
     if(Math.random()>0.5){
@@ -28,7 +28,7 @@ function randomColor () {
 
 }
 
-//Create Grid
+//Create Grid////////////////////////////////////////////////////////////
  
 function createTheBoard(rows, cols) { // 6 rows 7 cols
     var i; //rows
@@ -48,7 +48,7 @@ function createTheBoard(rows, cols) { // 6 rows 7 cols
 
 
 
-//Ruairi code
+//Check for winner loops//////////////////////////////////////////////////////////////////////
 
 function checkWinner(colour){ // e.g.  = "red"
 
@@ -66,15 +66,74 @@ function checkWinner(colour){ // e.g.  = "red"
                 gameboard[rows][cols+3]== colour)
 
                  {
-                    alert("winner");
+                    console.log("winner horz");
                  }
         }
 
     }
+
+    //loop 2 - check for a vertical winner
+    for(var cols = 0; cols < 7; cols++) //loop through the cols from the bottom
+    {
+        for(var rows = 0; rows < 3; rows++) //loop through the rows from the left
+        {
+            if( gameboard[rows][cols] == colour &&
+
+                gameboard[rows + 1][cols] == colour &&
+
+                gameboard[rows + 2][cols] == colour &&
+
+                gameboard[rows + 3][cols] == colour )
+
+                {
+                    console.log("winner vert");
+                }
+        }
+    }
+
+    //loop 3 - check for a diagonal upwards from left winner
+    for(var cols = 0; cols < 4; cols++) //loop through the cols from the bottom
+    {
+        for(var rows = 0; rows < 3; rows++) //loop through the rows from the left
+        {
+            if( gameboard[rows][cols] == colour &&
+
+                gameboard[rows + 1][cols + 1] == colour &&
+
+                gameboard[rows + 2][cols + 2] == colour &&
+
+                gameboard[rows + 3][cols + 3] == colour )
+
+                {
+                    console.log("winner diag from left");
+                }
+        }
+    }
+
+    //loop 4 - check for a diagonal upwards from right winner
+    for(var cols = 3; cols < 8; cols++) //loop through the cols from the bottom
+    {
+        for(var rows = 0; rows < 3; rows++) //loop through the rows from the left
+        {
+            if( gameboard[rows][cols] == colour &&
+
+                gameboard[rows + 1][cols - 1] == colour &&
+
+                gameboard[rows + 2][cols - 2] == colour &&
+
+                gameboard[rows + 3][cols - 3] == colour )
+
+                {
+                    console.log("winner diag from right");
+                }
+        }
+    }
+
+
+
 }
 
-
-
+///////////////////////////////////////////////////////////////////////////////////////
 
 
 
