@@ -6,7 +6,7 @@ var gameboard = createTheBoard(6, 7);
         for (var j = 0; j < 7; j++) {
             var ulGrid = document.getElementById("grid");
             var listItem = document.createElement("li");
-            listItem.id=(gameboard[i][j]);
+            listItem.className=(gameboard[i][j]);
             ulGrid.appendChild(listItem);
         }
     }
@@ -17,21 +17,15 @@ checkWinner("blue");
 
 // Random Color Function///////////////////////////////////////////////
 
-// function randomColor () {
-//     if(Math.random()>0.5){
-//         return "blue";
-//     }
+function randomColor () {
+    if(Math.random()>0.5){
+        return "blue";
+    }
 
-//     else{
-//         return "red";
-//     }
+    else{
+        return "red";
+    }
 
-// }
-
-
-////////////////push colour to array onClick////////////////////////
-document.getElementById("1").onclick = function();{
-    (first row).push("blue");
 }
 
 
@@ -47,8 +41,8 @@ function createTheBoard(rows, cols) { // 6 rows 7 cols
         grid[i] = new Array(cols);
  
         for (j = 0; j < cols; j++) {
-            // grid[i][j] = randomColor();
-               grid[i][j] = j+1;
+            grid[i][j] = randomColor();
+              
         }
     }
     return (grid);
