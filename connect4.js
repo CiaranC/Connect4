@@ -30,7 +30,7 @@ function randomColor () {
 
 
 //Create Grid////////////////////////////////////////////////////////////
- 
+
 function createTheBoard(rows, cols) { // 6 rows 7 cols
     var i; //rows
     var j; //columns
@@ -42,7 +42,7 @@ function createTheBoard(rows, cols) { // 6 rows 7 cols
  
         for (j = 0; j < cols; j++) {
             grid[i][j] = randomColor();
-              
+
         }
     }
     return (grid);
@@ -134,6 +134,9 @@ function checkWinner(colour){ // e.g.  = "red"
 
 
 }
+
+console.log(); //[vert,horz]
+
 
 ///////////////////////////////////////////////////////////////////////////////////////
 
