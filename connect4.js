@@ -1,52 +1,94 @@
 //Append to HTML//////////////////////////////////////////////////////
-
+var player = "red";
 var gameboard = createTheBoard(6, 7);
+drawBoard();
+
+function drawBoard () {
+
+    var ulGrid = document.getElementById("grid");
+    ulGrid.innerHTML="";
 
     for (var i = 0; i < 6; i++) { 
         for (var j = 0; j < 7; j++) {
-            var ulGrid = document.getElementById("grid");
             var listItem = document.createElement("li");
+
+            if (listItem.addEventListener) {
+                listItem.addEventListener("click", function(){userMove(this)}, false);
+            } 
+            else {
+                listItem.attachEvent('onclick', userMove(this));
+            }  
+
             listItem.className=(gameboard[i][j]);
             ulGrid.appendChild(listItem);
         }
     }
+}
 
 
-checkWinner("blue");
+function switchPlayer (argument) {
+    if (player == "red"){
+        player = "blue";
+    }
+    else{
+        player="red";
+    }
+}
+
+function userMove(gamePiece) {
+    var row = parseInt(gamePiece.className.substr(3,1));
+    var col = parseInt(gamePiece.className.substr(8,1));
+
+    if (row<5){
+        for (var i = 5; i >= row+1; i--) {
+            if(gameboard[i][col].indexOf("empty")> -1){
+                return;
+            }
+    }
+};
+
+ gameboard[row][col] = gameboard[row][col].replace("empty",player);
+ drawBoard();
+ checkWinner(player);
+ console.log(gameboard[row][col]);
+ switchPlayer();
+}
+
+
 
 
 // Random Color Function///////////////////////////////////////////////
 
-function randomColor () {
-    if(Math.random()>0.5){
-        return "blue";
-    }
+// function randomColor () {
+//     if(Math.random()>0.5){
+//         return "blue";
+//     }
 
-    else{
-        return "red";
-    }
+//     else{
+//         return "red";
+//     }
 
-}
+// }
 
 // // Empty slot function////////////////////////////////////////////
 
-// function emptySlot(){
-//     return "empty";
-// }
+function emptySlot(row, col){
+    return "row" + row + " col" + col + " empty";
+}
 
 //Create Grid////////////////////////////////////////////////////////////
 
-function createTheBoard(rows, cols) { // 6 rows 7 cols
-    var i; //rows
-    var j; //columns
-    grid = new Array(rows);
+function createTheBoard(numRows, numCols) { // 6 rows 7 cols
+    var row; //row
+    var col; //column
+    grid = new Array(numRows);
  
-    for (i = 0; i < rows; i++) {
+    for (row = 0; row < numRows; row++) {
  
-        grid[i] = new Array(cols);
+        grid[row] = new Array(numCols);
  
-        for (j = 0; j < cols; j++) {
-            grid[i][j] = randomColor();
+        for (col = 0; col < numCols; col++) {
+            grid[row][col] = emptySlot(row, col);
 
         }
     }
@@ -54,6 +96,8 @@ function createTheBoard(rows, cols) { // 6 rows 7 cols
 
 
 }
+
+
 
 
 
@@ -66,16 +110,16 @@ function checkWinner(colour){ // e.g.  = "red"
     {
         for(var cols = 0; cols < 4; cols++) //loop through the rows from the bottom
         {
-            if (gameboard[rows][cols]== colour &&
+            if (gameboard[rows][cols].indexOf(colour) != -1  &&
                 
-                gameboard[rows][cols+1]== colour &&
+                gameboard[rows][cols+1].indexOf(colour) != -1 &&
                 
-                gameboard[rows][cols+2]== colour &&
+                gameboard[rows][cols+2].indexOf(colour) != -1 &&
                 
-                gameboard[rows][cols+3]== colour)
+                gameboard[rows][cols+3].indexOf(colour) != -1)
 
                  {
-                    console.log("winner horz");
+                    alert(player + " wins");
                  }
         }
 
@@ -86,16 +130,16 @@ function checkWinner(colour){ // e.g.  = "red"
     {
         for(var rows = 0; rows < 3; rows++) //loop through the rows from the left
         {
-            if( gameboard[rows][cols] == colour &&
+            if( gameboard[rows][cols].indexOf(colour) != -1 &&
 
-                gameboard[rows + 1][cols] == colour &&
+                gameboard[rows + 1][cols].indexOf(colour) != -1 &&
 
-                gameboard[rows + 2][cols] == colour &&
+                gameboard[rows + 2][cols].indexOf(colour) != -1 &&
 
-                gameboard[rows + 3][cols] == colour )
+                gameboard[rows + 3][cols].indexOf(colour) != -1 )
 
                 {
-                    console.log("winner vert");
+                    alert(player + " wins");
                 }
         }
     }
@@ -105,35 +149,35 @@ function checkWinner(colour){ // e.g.  = "red"
     {
         for(var rows = 0; rows < 3; rows++) //loop through the rows from the left
         {
-            if( gameboard[rows][cols] == colour &&
+            if( gameboard[rows][cols].indexOf(colour) != -1 &&
 
-                gameboard[rows + 1][cols + 1] == colour &&
+                gameboard[rows + 1][cols + 1].indexOf(colour) != -1 &&
 
-                gameboard[rows + 2][cols + 2] == colour &&
+                gameboard[rows + 2][cols + 2].indexOf(colour) != -1 &&
 
-                gameboard[rows + 3][cols + 3] == colour )
+                gameboard[rows + 3][cols + 3].indexOf(colour) != -1 )
 
                 {
-                    console.log("winner diag from left");
+                    alert(player + " wins");
                 }
         }
     }
 
     //loop 4 - check for a diagonal upwards from right winner
-    for(var cols = 3; cols < 8; cols++) //loop through the cols from the bottom
+    for(var cols = 3; cols < 7; cols++) //loop through the cols from the bottom
     {
         for(var rows = 0; rows < 3; rows++) //loop through the rows from the left
         {
-            if( gameboard[rows][cols] == colour &&
+            if( gameboard[rows][cols].indexOf(colour) != -1 &&
 
-                gameboard[rows + 1][cols - 1] == colour &&
+                gameboard[rows + 1][cols - 1].indexOf(colour) != -1 &&
 
-                gameboard[rows + 2][cols - 2] == colour &&
+                gameboard[rows + 2][cols - 2].indexOf(colour) != -1 &&
 
-                gameboard[rows + 3][cols - 3] == colour )
+                gameboard[rows + 3][cols - 3].indexOf(colour) != -1 )
 
                 {
-                    console.log("winner diag from right");
+                    alert(player + " wins");
                 }
         }
     }
