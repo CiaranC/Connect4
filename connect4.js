@@ -15,6 +15,7 @@ var gameboard = createTheBoard(6, 7);
 checkWinner("blue");
 
 
+
 // Random Color Function///////////////////////////////////////////////
 
 function randomColor () {
