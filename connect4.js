@@ -28,6 +28,11 @@ function randomColor () {
 
 }
 
+// // Empty slot function////////////////////////////////////////////
+
+// function emptySlot(){
+//     return "empty";
+// }
 
 //Create Grid////////////////////////////////////////////////////////////
 
@@ -46,6 +51,8 @@ function createTheBoard(rows, cols) { // 6 rows 7 cols
         }
     }
     return (grid);
+
+
 }
 
 
@@ -135,11 +142,9 @@ function checkWinner(colour){ // e.g.  = "red"
 
 }
 
-console.log(); //[vert,horz]
 
 
 ///////////////////////////////////////////////////////////////////////////////////////
-
 
 
 
