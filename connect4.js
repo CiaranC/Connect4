@@ -1,5 +1,5 @@
 //Append to HTML//////////////////////////////////////////////////////
-var player = "red";
+var player = "Ken";
 var gameboard = createTheBoard(6, 7);
 drawBoard();
 
@@ -27,11 +27,11 @@ function drawBoard () {
 
 
 function switchPlayer (argument) {
-    if (player == "red"){
-        player = "blue";
+    if (player == "Ken"){
+        player = "Ryu";
     }
     else{
-        player="red";
+        player="Ken";
     }
 }
 
@@ -48,9 +48,9 @@ function userMove(gamePiece) {
 };
 
  gameboard[row][col] = gameboard[row][col].replace("empty",player);
+ playRandomSound();
  drawBoard();
  checkWinner(player);
- console.log(gameboard[row][col]);
  switchPlayer();
 }
 
@@ -61,11 +61,11 @@ function userMove(gamePiece) {
 
 // function randomColor () {
 //     if(Math.random()>0.5){
-//         return "blue";
+//         return "Ryu";
 //     }
 
 //     else{
-//         return "red";
+//         return "Ken";
 //     }
 
 // }
@@ -74,6 +74,7 @@ function userMove(gamePiece) {
 
 function emptySlot(row, col){
     return "row" + row + " col" + col + " empty";
+    onclick='playRandomSound()';
 }
 
 //Create Grid////////////////////////////////////////////////////////////
@@ -103,7 +104,7 @@ function createTheBoard(numRows, numCols) { // 6 rows 7 cols
 
 //Check for winner loops//////////////////////////////////////////////////////////////////////
 
-function checkWinner(colour){ // e.g.  = "red"
+function checkWinner(colour){ // e.g.  = "Ken"
 
     //loop 1 - check for a horizontal winner
     for(var rows = 0; rows < 6; rows++) //loop horizontally through the columns from the left
@@ -119,7 +120,9 @@ function checkWinner(colour){ // e.g.  = "red"
                 gameboard[rows][cols+3].indexOf(colour) != -1)
 
                  {
-                    alert(player + " wins");
+                    window.open(player+".html",'_self', false);
+
+
                  }
         }
 
@@ -139,7 +142,7 @@ function checkWinner(colour){ // e.g.  = "red"
                 gameboard[rows + 3][cols].indexOf(colour) != -1 )
 
                 {
-                    alert(player + " wins");
+                    window.open(player+".html",'_self', false);
                 }
         }
     }
@@ -158,7 +161,7 @@ function checkWinner(colour){ // e.g.  = "red"
                 gameboard[rows + 3][cols + 3].indexOf(colour) != -1 )
 
                 {
-                    alert(player + " wins");
+                    window.open(player+".html",'_self',false);
                 }
         }
     }
@@ -177,7 +180,7 @@ function checkWinner(colour){ // e.g.  = "red"
                 gameboard[rows + 3][cols - 3].indexOf(colour) != -1 )
 
                 {
-                    alert(player + " wins");
+                    window.open(player+".html",'_self', false);
                 }
         }
     }
@@ -186,7 +189,24 @@ function checkWinner(colour){ // e.g.  = "red"
 
 }
 
+//////////////sound fx
 
+function playRandomSound(){
+
+      //Array of all sound fx
+      var sounds = [ "audio/1.wav",
+                     "audio/2.wav",
+                     "audio/5.wav",
+                     "audio/6.wav",
+                     "audio/7.wav",
+                     "audio/9.wav",]
+      
+      // select a random sound to play 
+      var soundFile = sounds[Math.floor(Math.random()*sounds.length)];
+      
+      //Find the player element that you created and generate an embed file to play the sound within it
+      document.getElementById("player").innerHTML="<embed src=\""+soundFile+"\" hidden=\"true\" autostart=\"true\" loop=\"false\" />";
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////
 
