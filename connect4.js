@@ -55,21 +55,6 @@ function userMove(gamePiece) {
 }
 
 
-
-
-// Random Color Function///////////////////////////////////////////////
-
-// function randomColor () {
-//     if(Math.random()>0.5){
-//         return "Ryu";
-//     }
-
-//     else{
-//         return "Ken";
-//     }
-
-// }
-
 // // Empty slot function////////////////////////////////////////////
 
 function emptySlot(row, col){
@@ -97,10 +82,6 @@ function createTheBoard(numRows, numCols) { // 6 rows 7 cols
 
 
 }
-
-
-
-
 
 //Check for winner loops//////////////////////////////////////////////////////////////////////
 

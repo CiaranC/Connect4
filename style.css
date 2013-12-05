@@ -11,6 +11,7 @@ background-color: black;
 
 #game{
   background: url("images/mainbg.jpg");
+  background-color: #81c1f1;
   background-repeat: no-repeat;
   background-size: 140%;
   background-position: center;
@@ -27,6 +28,12 @@ background-color: black;
 
 }
 
+.fight{
+  padding: 10px;
+  margin: 0;
+  color: #f78013;
+}
+
 .crapcom {opacity:0;
 -moz-transition: opacity 5s; /* Firefox 4 */
 -webkit-transition: opacity 5s; /* Safari and Chrome */
@@ -38,7 +45,7 @@ transition: opacity 5s;
 	
   border: 1px solid #f8f8f8;
   width: 530px;
-  margin: auto;
+  margin: 0 auto 0 auto;
 	border-radius: 30px;
 background:url("images/bg.png");
 background-size: 155%;
@@ -74,6 +81,8 @@ a{
    align-items: center;
    -webkit-justify-content: center;
    justify-content: center;
+     -webkit-flex-direction: column;
+   flex-direction: column;
 }
 
 
@@ -136,6 +145,12 @@ li{
   -webkit-transition:.5s;
   transition:.5s;
 
+}
+
+audio{
+  position: fixed;
+  top: 5px;
+  left: 10px;
 }
 
 li:hover{
